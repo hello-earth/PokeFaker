@@ -160,7 +160,8 @@ public class LocationService extends Service {
         lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
         lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
         lp.gravity = Gravity.START | Gravity.TOP;
-        lp.y = (int) (100 * getResources().getDisplayMetrics().density);
+        lp.x = (int) (200 * getResources().getDisplayMetrics().density);
+        lp.y = (int) (350 * getResources().getDisplayMetrics().density);
         return lp;
     }
 

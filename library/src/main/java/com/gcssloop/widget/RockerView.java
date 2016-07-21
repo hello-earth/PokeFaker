@@ -289,6 +289,24 @@ public class RockerView extends SurfaceView implements Runnable, SurfaceHolder.C
         return true;
     }
 
+    public void startCallbackTask() {
+        if (tExit == null) {
+            tExit = new Timer();
+            tExit.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    listenerCallback();
+                }
+            }, 350, mRefreshCycle);
+        }
+    }
+
+    public void stopCallbackTask() {
+        if (tExit != null){
+            tExit.cancel();
+            tExit=null;
+        }
+    }
 
     /*Thread - draw view***************************************************************************/
 
@@ -299,14 +317,6 @@ public class RockerView extends SurfaceView implements Runnable, SurfaceHolder.C
         }
 
         Canvas canvas = null;
-
-        tExit.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                // listener callback
-                listenerCallback();
-            }
-        }, 1000,mRefreshCycle);
 
         while (drawOk) {
             try {

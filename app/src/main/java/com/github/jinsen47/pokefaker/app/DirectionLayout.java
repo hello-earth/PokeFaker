@@ -48,7 +48,6 @@ public class DirectionLayout extends RelativeLayout {
         LayoutInflater inflater = LayoutInflater.from(mContext);
         mContentView = inflater.inflate(R.layout.layout_direction, this);
         rocker = (RockerView) mContentView.findViewById(R.id.rocker);
-        rocker.setRefreshCycle(99999);
         moveInfo = ((ImageView)mContentView.findViewById(R.id.move_info));
         moveButton = ((ImageView)mContentView.findViewById(R.id.arrowMove));
         moveButton.setVisibility(INVISIBLE);
@@ -81,11 +80,11 @@ public class DirectionLayout extends RelativeLayout {
                     }
                     switch (eventType) {
                         case RockerView.EVENT_ACTION:
-                            rocker.setRefreshCycle(1500);
+                            rocker.startCallbackTask();
                             break;
                         case RockerView.EVENT_CLOCK:
                             if(currentAngle<0){
-                                rocker.setRefreshCycle(99999);
+                                rocker.stopCallbackTask();
                             }
                             break;
                     }
