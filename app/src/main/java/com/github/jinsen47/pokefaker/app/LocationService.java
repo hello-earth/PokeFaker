@@ -212,7 +212,7 @@ public class LocationService extends Service {
     }
 
     private void move(LatLng ori, double angle, double power) {
-        double BASE = 0.00001 * power;
+        double BASE = 0.000006 * power;
         double latitude = ori.latitude;
         double longitude = ori.longitude;
         latitude += BASE * Math.sin(angle);

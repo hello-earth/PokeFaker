@@ -62,7 +62,7 @@ public class MockProviderFaker implements IXposedHookLoadPackage {
     }
 
     private void preventGetMockLocationSetting(XC_LoadPackage.LoadPackageParam lpparam) {
-        if (!mPackageSet.contains(lpparam.packageName)) return;
+        //if (!mPackageSet.contains(lpparam.packageName)) return;
         // hook Settings.Secure.getInt(ContentResolver, String)
         XposedHelpers.findAndHookMethod(
                 Settings.Secure.class,
@@ -98,7 +98,7 @@ public class MockProviderFaker implements IXposedHookLoadPackage {
     }
 
     private void preventCheckFromMockProvider(final XC_LoadPackage.LoadPackageParam lpparam) {
-        if (Build.VERSION.SDK_INT >= 18 && mPackageSet.contains(lpparam.packageName)) {
+        if (Build.VERSION.SDK_INT >= 18 ) {
             // hook Location.isFromMockProvider()
             XposedHelpers.findAndHookMethod(
                     Location.class,

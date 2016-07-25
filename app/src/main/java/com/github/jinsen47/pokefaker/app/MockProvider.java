@@ -13,6 +13,8 @@ import android.util.Log;
 
 import com.google.android.gms.maps.model.LatLng;
 
+import java.util.Random;
+
 /**
  * Created by Jinsen on 16/7/14.
  */
@@ -22,6 +24,8 @@ public class MockProvider {
 
     private final String mProvider;
     private final Context mContext;
+    private static float accuracy = 0.0f;
+    private static float altitude = 0.0f;
     private LocationManager mLocationManager;
     private DataSetObserver mDataObserver = new DataSetObserver() {
         @Override
@@ -47,8 +51,10 @@ public class MockProvider {
         mContext = context;
         mProvider = provider;
         mLocationManager = ((LocationManager) mContext.getSystemService(Context.LOCATION_SERVICE));
-
         mLocationManager.addTestProvider(mProvider, false, false, false, false, true /* allow speed */, false, false, 0, 5);
+        Random rd = new Random(SystemClock.currentThreadTimeMillis());
+        if(accuracy==0.0f)accuracy = 6.0f+rd.nextFloat()*12;
+        if(altitude==0.0f)altitude = 37.0f+rd.nextFloat()*19;
     }
 
     public synchronized void start() {
@@ -77,8 +83,8 @@ public class MockProvider {
         Location l = new Location(mProvider);
         l.setLatitude(latitude);
         l.setLongitude(longitude);
-        l.setAccuracy(25.0f);
-        l.setAltitude(47.0f);
+        l.setAccuracy(accuracy);
+        l.setAltitude(altitude);
         l.setTime(System.currentTimeMillis());
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             l.setElapsedRealtimeNanos(SystemClock.elapsedRealtimeNanos());
