@@ -10,6 +10,6 @@
     (This file is used for the release target that uses the release key store.)
     -->
     <string name="google_maps_key" translatable="false" templateMergeStrategy="preserve">
-        AIzaSyALYwmZwIMDyVPeBoaYTAem9cf_xzj_5Xc
+        AIzaSyAGkdVVIZg7bait11oEQhza7pKdbs8jM9M
     </string>
 </resources>
